@@ -6,6 +6,7 @@ import com.example.university.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -28,11 +29,13 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public Student addStd(Student std) {
         return studentRepository.save(std);
     }
 
     @Override
+    @Transactional
     public void deleteStdById(Long id) {
         Student std = getStdById(id);
         studentRepository.delete(std);

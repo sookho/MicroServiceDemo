@@ -6,6 +6,7 @@ import com.example.employeemanagement.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -28,11 +29,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    @Transactional
     public Employee addEmp(Employee emp) {
         return employeeRepository.save(emp);
     }
 
     @Override
+    @Transactional
     public void deleteEmpById(Long id) {
         Employee emp =  employeeRepository.getOne(id);
         employeeRepository.delete(emp);
